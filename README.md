@@ -12,55 +12,56 @@ CLI tool for analyzing git repository commit history with JSON output and HTML r
 - 🧪 8+ unit tests with fixture repos
 - ⚡ Handles 10,000+ commits without hanging
 
+## Requirements
+
+- Python 3.8 or higher
+- Git (installed and available in PATH)
+
 ## Installation
 
-git clone https://github.com/YOUR_USERNAME/git-commit-analyzer
-cd git-commit-analyzer
-python -m venv venv
+### 1. Clone the repository
 
-## Activate virtual environment:
+git clone https://github.com/altynai9128/git-commit-analyzer
+cd git-commit-analyzer
+
+### 2. Create and activate virtual environment
 
 Windows:
-
+python -m venv venv
 venv\Scripts\activate
 
 Linux/Mac:
-
+python3 -m venv venv
 source venv/bin/activate
 
-## Install dependencies:
+### 3. Install dependencies
 
 pip install -r requirements.txt
 
 ## Usage
 
-Basic syntax:
+Basic syntax
 
-python cli.py <repo-path> [--max-commits N] [--output FORMAT] [--report-file FILENAME]
+python cli.py <path-to-repository> [--max-commits N] [--output FORMAT] [--report-file FILENAME]
 
 ## Parameters
+
 | Parameter | Description | Default |
 |-----------|-------------|---------|
-| `repo-path` | Path to git repository | Required |
+| `<path-to-repository>` | Path to local git repository | Required |
 | `--max-commits` | Number of commits to analyze | 500 |
 | `--output` | Output format: `json` or `html` | json |
 | `--report-file` | HTML report filename (for html output) | report.html |
 
 ## Examples
-JSON output:
-
+- JSON output:
 python cli.py /path/to/git/repo --max-commits 500 --output json
-
-HTML report:
-
+- HTML report:
 python cli.py /path/to/git/repo --max-commits 1000 --output html --report-file my_report.html
-
-Default values:
-
+- Default values (analyzes last 500 commits, prints JSON to console):
 python cli.py /path/to/git/repo
 
-JSON Output Example
-
+## JSON Output Example
 {
   "total_commits_analyzed": 100,
   "commits_per_day": {
@@ -91,9 +92,8 @@ JSON Output Example
   ]
 }
 
-HTML Report
-
-Creates an interactive HTML file with 4 charts:
+## HTML Report
+- Creates an interactive HTML file with 4 charts:
 
 - Commit frequency over time (line chart)
 
@@ -103,36 +103,25 @@ Creates an interactive HTML file with 4 charts:
 
 - Commits per week (histogram)
 
-- Open HTML report in browser:
+![alt text](image.png)
 
-python cli.py /path/to/repo --output html --report-file reports/my_report.html
-The reports folder will be created automatically.
+## Open HTML report in browser:
+- Windows:
+start report.html
 
-## Running Tests
+- Linux:
+xdg-open report.html
 
-pytest tests/ -v
+- Mac:
+open report.html
 
-## Requirements
-Python 3.8+
-Git (installed and available in PATH)
-
-## Dependencies
-gitpython==3.1.41
-pandas==2.2.1
-matplotlib==3.8.3
-seaborn==0.13.2
-plotly==5.19.0
-click==8.1.7
-pytest==8.0.2
-
-## Example Output
-See sample_output/example_report.html for a complete HTML report example.
+The folder for the report is created automatically. Example: --report-file reports/my_report.html will create the reports folder if it doesn't exist.
 
 ## Notes
-- Works with repositories containing 10,000+ commits (streaming processing)
+Works with repositories containing 10,000+ commits (streaming processing)
 
-- "Average PR size" is calculated as average changes per commit (for repositories without pull requests)
+"Average PR size" is calculated as average changes per commit (for repositories without pull requests)
 
-- Code churn hotspots only consider commits from the last 30 days
+Code churn hotspots only consider commits from the last 30 days
 
-- Conventional commits format: type(scope): description (feat, fix, docs, style, refactor, perf, test, chore)
+Conventional commits format: type(scope): description (feat, fix, docs, style, refactor, perf, test, chore)
