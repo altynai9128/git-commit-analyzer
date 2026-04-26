@@ -125,7 +125,7 @@ plotly==5.19.0
 click==8.1.7
 pytest==8.0.2
 
-## xample Output
+## Example Output
 See sample_output/example_report.html for a complete HTML report example.
 
 ## Notes
