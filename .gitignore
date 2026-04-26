@@ -1,0 +1,7 @@
+echo venv/ > .gitignore
+echo __pycache__/ >> .gitignore
+echo *.pyc >> .gitignore
+echo .pytest_cache/ >> .gitignore
+echo *.pyo >> .gitignore
+echo .coverage >> .gitignore
+echo htmlcov/ >> .gitignore
